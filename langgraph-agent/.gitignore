@@ -1,0 +1,13 @@
+# API keys file
+.env
+
+# Python files
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Aapke structure ke local database aur logs (MOST IMPORTANT)
+data/chroma/
+data/logs/
+data/uploads/
