@@ -24,7 +24,12 @@ for i, chunk in enumerate(chunks):
     collection.add(
         ids=[str(i)],
         documents=[chunk.page_content],
-        embeddings=[embedding]
+        embeddings=[embedding],
+        metadatas=[{
+            "source": pdf_path,
+            "page": chunk.metadata.get("page", "N/A"),
+            "section": "GRC Whitepaper"
+        }]
     )
 
 print(f"Stored {len(chunks)} chunks in ChromaDB")
