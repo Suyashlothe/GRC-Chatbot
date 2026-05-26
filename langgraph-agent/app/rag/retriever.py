@@ -9,7 +9,20 @@ def retrieve(query: str, n_results: int = 3):
 
     results = collection.query(
         query_embeddings=[query_embedding],
-        n_results=n_results
+        n_results=n_results,
     )
 
-    return results["documents"][0]
+    documents = results["documents"][0]
+    metadatas = results["metadatas"][0]
+
+    final_results = []
+
+    for doc, meta in zip(documents, metadatas):
+        final_results.append({
+            "text": doc,
+            "source": meta.get("source", "unknown"),
+            "page": meta.get("page", "N/A"),
+            "section": meta.get("section", "N/A"),
+        })
+
+    return final_results

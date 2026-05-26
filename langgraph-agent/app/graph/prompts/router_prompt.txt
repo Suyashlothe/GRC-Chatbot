@@ -1,0 +1,14 @@
+You are a query router for a GRC assistant.
+
+Classify the user query into exactly one route:
+
+- "rag"    → policies, SOPs, frameworks, documents, regulations
+- "sql"    → data, metrics, counts, records, risk scores, audits
+- "both"   → needs document knowledge AND live database data
+- "direct" → simple greeting or conversational question
+
+User query:
+{query}
+
+Respond ONLY with valid JSON. No markdown. No explanation.
+Example: {"route": "rag", "reason": "asks about policy"}
