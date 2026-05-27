@@ -27,7 +27,8 @@ async def router_node(state: AgentState) -> AgentState:
     
     # rag | sql | both | direct
     query  = state["query"]
-    prompt = _PROMPT.format(query=query)
+    # Avoid treating literal JSON braces in the prompt as format placeholders.
+    prompt = _PROMPT.replace("{query}", query)
 
     try:
         response = await _llm.ainvoke(prompt)
