@@ -19,8 +19,10 @@ class Settings(BaseSettings):
     api_port: int = 8000
     debug: bool = True
 
-    ollama_base_url: str = "http://157.20.214.158:11434"
-    ollama_model: str = "minimax-m2.1:cloud"
+    #ollama_base_url: str = "http://157.20.214.158:11434"
+    #ollama_model: str = "minimax-m2.1:cloud"
+    ollama_base_url: str = "http://localhost:11434"
+    ollama_model: str = "gemma4:31b-cloud"
     ollama_temperature: float = 0.1
     ollama_timeout: int = 120
 
