@@ -1,7 +1,7 @@
-from sqlalchemy import inspect, text
+from sqlalchemy import inspect
 from loguru import logger
 
-from app.sql.db import engine
+from app.sql.db import get_engine
 
 
 class SchemaLoader:
@@ -21,7 +21,7 @@ class SchemaLoader:
     @classmethod
     async def load(cls) -> None:
         try:
-            inspector = inspect(engine)
+            inspector = inspect(get_engine())
             tables = inspector.get_table_names()
 
             if not tables:
