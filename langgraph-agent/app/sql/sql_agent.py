@@ -40,10 +40,26 @@ class SQLAgent:
 
         # ── Step 1: Prompt injecting Schema ──────────────
         schema = SchemaLoader.get()
+        allowed_views = [
+        "vw_assessment_scoring",
+        "vw_assessment_summary",
+        "vw_asset_inventory",
+        "vw_control_test_status",
+        "vw_document_summary",
+        "vw_framework_compliance",
+        "vw_mitigation_summary",
+        "vw_open_risks",
+        "vw_overdue_items",
+        "vw_risk_history",
+        "vw_risk_summary",
+        "vw_risk_trend",
+        "vw_user_activity",
+        ]
         prompt = _PROMPT_TEMPLATE.format(
             schema=schema,
             query=user_query,
             max_rows=settings.sql_max_rows,
+            allowed_views=", ".join(allowed_views),
         )
 
         # ── Step 2: SQL Generation from LLM ─────────────────────
