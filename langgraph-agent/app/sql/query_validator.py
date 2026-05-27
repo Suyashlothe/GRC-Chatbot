@@ -38,12 +38,19 @@ _BLOCKED_RE = [re.compile(p, re.IGNORECASE) for p in BLOCKED_KEYWORDS]
 # Only these views can be queried. No direct table access allowed.
 # SQL Views names
 ALLOWED_VIEWS = {
-    "vw_risks",
-    "vw_controls",
-    "vw_audits",
-    "vw_incidents",
-    "vw_compliance",
-    "vw_assets",
+    "vw_risk_summary",
+    "vw_assessment_summary",
+    "vw_assessment_scoring",
+    "vw_asset_inventory",
+    "vw_risk_history",
+    "vw_mitigation_summary",
+    "vw_framework_compliance",
+    "vw_control_test_status",
+    "vw_document_summary",
+    "vw_open_risks",
+    "vw_risk_trend",
+    "vw_overdue_items",
+    "vw_user_activity",
 }
 
 
@@ -143,7 +150,7 @@ def validate_sql(sql: str) -> str:
     _check_blocked_keywords(sql)
 
     # Step 3 — Views check
-    #_check_allowed_views(sql)
+    _check_allowed_views(sql)
 
     # Step 4 — LIMIT
     safe_sql = _enforce_limit(sql)

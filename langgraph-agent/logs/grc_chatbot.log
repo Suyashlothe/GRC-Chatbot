@@ -1,0 +1,70 @@
+2026-05-27 11:36:25 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-27 11:36:25 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-27 11:36:25 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-27 11:36:25 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-27 11:36:25 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-27 11:36:25 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-27 11:36:30 | WARNING  | app.sql.db:test_connection:56 | MySQL connection skipped because configuration is missing.
+2026-05-27 11:36:30 | WARNING  | app.main:lifespan:112 | [4/5] MySQL connection failed.
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-27 11:36:30 | WARNING  | app.main:lifespan:131 | [5/5] Schema loading skipped because MySQL is unavailable.
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:136 | Startup status: degraded
+2026-05-27 11:36:30 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-27 11:40:59 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-27 11:40:59 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-27 11:40:59 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-27 11:40:59 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-27 11:40:59 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-27 11:40:59 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-27 11:41:02 | ERROR    | app.main:lifespan:86 | [2/5] Embeddings failed: The paging file is too small for this operation to complete. (os error 1455)
+2026-05-27 11:41:02 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-27 11:41:02 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-27 11:41:02 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-27 11:41:02 | WARNING  | app.sql.db:test_connection:56 | MySQL connection skipped because configuration is missing.
+2026-05-27 11:41:02 | WARNING  | app.main:lifespan:112 | [4/5] MySQL connection failed.
+2026-05-27 11:41:02 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-27 11:41:02 | WARNING  | app.main:lifespan:131 | [5/5] Schema loading skipped because MySQL is unavailable.
+2026-05-27 11:41:02 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-27 11:41:02 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-27 11:41:02 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-27 11:41:02 | INFO     | app.main:lifespan:136 | Startup status: degraded
+2026-05-27 11:41:02 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-27 11:42:40 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-27 11:42:52 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-27 11:42:52 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-27 11:42:52 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-27 11:42:52 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-27 11:42:52 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-27 11:42:52 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-27 11:42:55 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-27 11:42:55 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-27 11:42:55 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-27 11:42:55 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-27 11:42:56 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-27 11:42:56 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-27 11:42:56 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-27 11:43:26 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET / 200 0.00s
+2026-05-27 11:43:26 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /favicon.ico 404 0.00s
+2026-05-27 11:43:33 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-27 11:43:33 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-27 11:43:33 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-27 11:43:33 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-27 11:43:33 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-27 11:43:33 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-27 11:43:33 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-27 11:43:43 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /chta 404 0.00s
+2026-05-27 11:43:49 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /chat 404 0.00s
+2026-05-27 11:43:53 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-27 11:43:54 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.01s
+2026-05-27 11:44:48 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total Risks in ISO framework'
+2026-05-27 11:48:54 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-27 11:48:55 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-27 11:50:33 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total assets'
+2026-05-27 11:51:37 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'What is my password policy'
