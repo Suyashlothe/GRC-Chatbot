@@ -38,4 +38,4 @@ def aggregator_node(state: AgentState) -> AgentState:
         f"SQL: {len(state.get('sql_results', []))} rows"
     )
 
-    return {**state, "full_context": full_context}
+    return { "full_context": full_context}

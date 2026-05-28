@@ -11,29 +11,48 @@ async def rag_node(state: AgentState) -> AgentState:
         # retriever seedha dicts return karta hai
         docs = retrieve(query)
 
-        rag_context = [
-            {
-                "text":    doc["text"],
-                "source":  doc["source"],
-                "page":    doc["page"],
-                "section": doc.get("section", "N/A"),
-            }
-            for doc in docs
+        blocked_terms = [
+            "77 tables",
+            "InnoDB",
+            "ACID",
+            "storage engine",
+            "referential integrity"
+            "database schema",
+            "Identity & Access Management",
+            "permissions",
+            "permission groups",
+            "sessions",
         ]
+
+        rag_context = []
+
+        for doc in docs:
+            clean_text = doc["text"]
+
+            for term in blocked_terms:
+                clean_text = clean_text.replace(term, "")
+
+            rag_context.append(
+                {
+                    "text": clean_text,
+                    "source": doc["source"],
+                    "page": doc["page"],
+                    "section": doc.get("section", "N/A"),
+                }
+            )
 
         logger.info(f"RAG node → {len(rag_context)} chunks | '{query[:60]}'")
 
         return {
-            **state,
-            "rag_context":   rag_context,
+            "rag_context": rag_context,
             "rag_retrieved": True,
         }
 
     except Exception as e:
         logger.error(f"RAG node error: {e}")
+
         return {
-            **state,
-            "rag_context":   [],
+            "rag_context": [],
             "rag_retrieved": False,
             "errors": state.get("errors", []) + [f"RAG error: {e}"],
         }

@@ -1285,3 +1285,877 @@ langgraph.errors.InvalidUpdateError: At key 'query': Can receive only one value 
 2026-05-27 18:15:47 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=rag
 2026-05-27 18:15:47 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 6.24s
 2026-05-27 18:36:34 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 09:07:20 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 09:07:20 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 09:07:20 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 09:07:20 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 09:07:20 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 09:07:20 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 09:07:23 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 09:07:23 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 09:07:23 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 09:07:23 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 09:07:24 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 09:07:24 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 09:07:24 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 09:07:47 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 250 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_to_asset_groups', 'control_to_assets', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog', 'risk_function', 'risk_grouping', 'risk_levels', 'risk_models', 'risk_scoring', 'risk_scoring_contributing_impacts', 'risk_scoring_history', 'risk_to_additional_stakeholder', 'risk_to_location', 'risk_to_team', 'risk_to_technology', 'risks', 'risks_to_asset_groups', 'risks_to_assets', 'role', 'role_responsibilities', 'saved_table_display_settings', 'scoring_methods', 'sessions', 'settings', 'source', 'status', 'tags', 'tags_taggees', 'team', 'technology', 'temp_contributing_risk_impact_data_1764050187_oLR7r', 'temp_contributing_risk_impact_data_1764050256_CFBV3', 'temp_contributing_risk_impact_data_1764050256_D56QC', 'temp_contributing_risk_impact_data_1764050256_eWKkB', 'temp_contributing_risk_impact_data_1764050263_dqsSl', 'temp_contributing_risk_impact_data_1764053161_24qKa', 'temp_contributing_risk_impact_data_1764060348_SOiYP', 'temp_contributing_risk_impact_data_1764060364_rCpt6', 'temp_contributing_risk_impact_data_1764062682_cfaay', 'temp_contributing_risk_impact_data_1764136156_yAuaf', 'temp_contributing_risk_impact_data_1764136166_vd6aQ', 'temp_contributing_risk_impact_data_1764136292_8Iu6G', 'temp_contributing_risk_impact_data_1764136304_vze2s', 'temp_contributing_risk_impact_data_1764137382_WRifs', 'temp_contributing_risk_impact_data_1764137383_VAT06', 'temp_contributing_risk_impact_data_1764137622_WxunO', 'temp_contributing_risk_impact_data_1764137625_YIiyy', 'temp_contributing_risk_impact_data_1764137844_IgChD', 'temp_contributing_risk_impact_data_1764574006_aKM0b', 'temp_contributing_risk_impact_data_1764574029_i1BYp', 'temp_contributing_risk_impact_data_1764654310_1GioD', 'temp_contributing_risk_impact_data_1765281751_oEROV', 'temp_contributing_risk_impact_data_1765281754_LrZc7', 'temp_contributing_risk_impact_data_1765283189_favAg', 'temp_contributing_risk_impact_data_1765283196_KH0p4', 'temp_contributing_risk_impact_data_1765839277_LdgHe', 'temp_contributing_risk_impact_data_1765839320_G3ZVF', 'temp_rrsh_last_update_age_1764050187_oLR7r', 'temp_rrsh_last_update_age_1764050256_CFBV3', 'temp_rrsh_last_update_age_1764050256_D56QC', 'temp_rrsh_last_update_age_1764050256_eWKkB', 'temp_rrsh_last_update_age_1764050263_dqsSl', 'temp_rrsh_last_update_age_1764053161_24qKa', 'temp_rrsh_last_update_age_1764060348_SOiYP', 'temp_rrsh_last_update_age_1764060364_rCpt6', 'temp_rrsh_last_update_age_1764062682_cfaay', 'temp_rrsh_last_update_age_1764136156_yAuaf', 'temp_rrsh_last_update_age_1764136166_vd6aQ', 'temp_rrsh_last_update_age_1764136292_8Iu6G', 'temp_rrsh_last_update_age_1764136304_vze2s', 'temp_rrsh_last_update_age_1764137382_WRifs', 'temp_rrsh_last_update_age_1764137383_VAT06', 'temp_rrsh_last_update_age_1764137622_WxunO', 'temp_rrsh_last_update_age_1764137625_YIiyy', 'temp_rrsh_last_update_age_1764137844_IgChD', 'temp_rrsh_last_update_age_1764574006_aKM0b', 'temp_rrsh_last_update_age_1764574029_i1BYp', 'temp_rrsh_last_update_age_1764654310_1GioD', 'temp_rrsh_last_update_age_1765281751_oEROV', 'temp_rrsh_last_update_age_1765281754_LrZc7', 'temp_rrsh_last_update_age_1765283189_favAg', 'temp_rrsh_last_update_age_1765283196_KH0p4', 'temp_rrsh_last_update_age_1765839277_LdgHe', 'temp_rrsh_last_update_age_1765839320_G3ZVF', 'temp_rrsh_last_update_age_base_1764050187_oLR7r', 'temp_rrsh_last_update_age_base_1764050256_CFBV3', 'temp_rrsh_last_update_age_base_1764050256_D56QC', 'temp_rrsh_last_update_age_base_1764050256_eWKkB', 'temp_rrsh_last_update_age_base_1764050263_dqsSl', 'temp_rrsh_last_update_age_base_1764053161_24qKa', 'temp_rrsh_last_update_age_base_1764060348_SOiYP', 'temp_rrsh_last_update_age_base_1764060364_rCpt6', 'temp_rrsh_last_update_age_base_1764062682_cfaay', 'temp_rrsh_last_update_age_base_1764136156_yAuaf', 'temp_rrsh_last_update_age_base_1764136166_vd6aQ', 'temp_rrsh_last_update_age_base_1764136292_8Iu6G', 'temp_rrsh_last_update_age_base_1764136304_vze2s', 'temp_rrsh_last_update_age_base_1764137382_WRifs', 'temp_rrsh_last_update_age_base_1764137383_VAT06', 'temp_rrsh_last_update_age_base_1764137622_WxunO', 'temp_rrsh_last_update_age_base_1764137625_YIiyy', 'temp_rrsh_last_update_age_base_1764137844_IgChD', 'temp_rrsh_last_update_age_base_1764574006_aKM0b', 'temp_rrsh_last_update_age_base_1764574029_i1BYp', 'temp_rrsh_last_update_age_base_1764654310_1GioD', 'temp_rrsh_last_update_age_base_1765281751_oEROV', 'temp_rrsh_last_update_age_base_1765281754_LrZc7', 'temp_rrsh_last_update_age_base_1765283189_favAg', 'temp_rrsh_last_update_age_base_1765283196_KH0p4', 'temp_rrsh_last_update_age_base_1765839277_LdgHe', 'temp_rrsh_last_update_age_base_1765839320_G3ZVF', 'temp_rsh_last_update_age_1764050187_oLR7r', 'temp_rsh_last_update_age_1764050256_CFBV3', 'temp_rsh_last_update_age_1764050256_D56QC', 'temp_rsh_last_update_age_1764050256_eWKkB', 'temp_rsh_last_update_age_1764050263_dqsSl', 'temp_rsh_last_update_age_1764053161_24qKa', 'temp_rsh_last_update_age_1764060348_SOiYP', 'temp_rsh_last_update_age_1764060364_rCpt6', 'temp_rsh_last_update_age_1764062682_cfaay', 'temp_rsh_last_update_age_1764136156_yAuaf', 'temp_rsh_last_update_age_1764136166_vd6aQ', 'temp_rsh_last_update_age_1764136292_8Iu6G', 'temp_rsh_last_update_age_1764136304_vze2s', 'temp_rsh_last_update_age_1764137382_WRifs', 'temp_rsh_last_update_age_1764137383_VAT06', 'temp_rsh_last_update_age_1764137622_WxunO', 'temp_rsh_last_update_age_1764137625_YIiyy', 'temp_rsh_last_update_age_1764137844_IgChD', 'temp_rsh_last_update_age_1764574006_aKM0b', 'temp_rsh_last_update_age_1764574029_i1BYp', 'temp_rsh_last_update_age_1764654310_1GioD', 'temp_rsh_last_update_age_1765281751_oEROV', 'temp_rsh_last_update_age_1765281754_LrZc7', 'temp_rsh_last_update_age_1765283189_favAg', 'temp_rsh_last_update_age_1765283196_KH0p4', 'temp_rsh_last_update_age_1765839277_LdgHe', 'temp_rsh_last_update_age_1765839320_G3ZVF', 'temp_rsh_last_update_age_base_1764050187_oLR7r', 'temp_rsh_last_update_age_base_1764050256_CFBV3', 'temp_rsh_last_update_age_base_1764050256_D56QC', 'temp_rsh_last_update_age_base_1764050256_eWKkB', 'temp_rsh_last_update_age_base_1764050263_dqsSl', 'temp_rsh_last_update_age_base_1764053161_24qKa', 'temp_rsh_last_update_age_base_1764060348_SOiYP', 'temp_rsh_last_update_age_base_1764060364_rCpt6', 'temp_rsh_last_update_age_base_1764062682_cfaay', 'temp_rsh_last_update_age_base_1764136156_yAuaf', 'temp_rsh_last_update_age_base_1764136166_vd6aQ', 'temp_rsh_last_update_age_base_1764136292_8Iu6G', 'temp_rsh_last_update_age_base_1764136304_vze2s', 'temp_rsh_last_update_age_base_1764137382_WRifs', 'temp_rsh_last_update_age_base_1764137383_VAT06', 'temp_rsh_last_update_age_base_1764137622_WxunO', 'temp_rsh_last_update_age_base_1764137625_YIiyy', 'temp_rsh_last_update_age_base_1764137844_IgChD', 'temp_rsh_last_update_age_base_1764574006_aKM0b', 'temp_rsh_last_update_age_base_1764574029_i1BYp', 'temp_rsh_last_update_age_base_1764654310_1GioD', 'temp_rsh_last_update_age_base_1765281751_oEROV', 'temp_rsh_last_update_age_base_1765281754_LrZc7', 'temp_rsh_last_update_age_base_1765283189_favAg', 'temp_rsh_last_update_age_base_1765283196_KH0p4', 'temp_rsh_last_update_age_base_1765839277_LdgHe', 'temp_rsh_last_update_age_base_1765839320_G3ZVF', 'test_results', 'test_status', 'threat_catalog', 'threat_grouping', 'user', 'user_mfa', 'user_pass_history', 'user_pass_reuse_history', 'user_to_team', 'validation_files']
+2026-05-28 09:07:47 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 250 tables.
+2026-05-28 09:07:47 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 09:07:47 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 09:07:47 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 09:07:47 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 09:07:47 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 09:08:00 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 09:08:00 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.02s
+2026-05-28 09:08:44 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 09:08:51 | INFO     | app.graph.router:router_node:48 | Router -> [rag] | query: 'Tell me about Rakshitah'
+2026-05-28 09:08:52 | ERROR    | app.graph.nodes.rag_node:rag_node:33 | RAG node error: 'NoneType' object has no attribute 'get'
+2026-05-28 09:08:52 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 0 rows
+2026-05-28 09:08:54 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 388 chars | route: rag
+2026-05-28 09:08:54 | WARNING  | app.graph.nodes.validator_node:validator_node:28 | Validator → response OK but 1 error(s): ["RAG error: 'NoneType' object has no attribute 'get'"]
+2026-05-28 09:08:54 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 388 chars
+2026-05-28 09:08:54 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=rag
+2026-05-28 09:08:54 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 9.80s
+2026-05-28 09:14:01 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 09:14:01 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 09:14:14 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Give me total number of assets'
+2026-05-28 09:14:17 | INFO     | app.graph.router:router_node:48 | Router -> [sql] | query: 'Give me total number of assets'
+2026-05-28 09:14:17 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total number of assets'
+2026-05-28 09:14:20 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 09:14:20 | ERROR    | app.sql.sql_agent:run:90 | SQL execution failed: (pymysql.err.ProgrammingError) (1146, "Table 'simplerisk.vw_asset_inventory' doesn't exist")
+[SQL: SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-05-28 09:14:20 | ERROR    | app.graph.nodes.sql_node:sql_node:25 | SQL node error: SQL execution error: (pymysql.err.ProgrammingError) (1146, "Table 'simplerisk.vw_asset_inventory' doesn't exist")
+[SQL: SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-05-28 09:14:20 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 0 rows
+2026-05-28 09:14:22 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 230 chars | route: sql
+2026-05-28 09:14:22 | WARNING  | app.graph.nodes.validator_node:validator_node:28 | Validator → response OK but 1 error(s): ['SQL error: SQL execution error: (pymysql.err.ProgrammingError) (1146, "Table \'simplerisk.vw_asset_inventory\' doesn\'t exist")\n[SQL: SELECT COUNT(*) AS total_assets\nFROM vw_asset_inventory\nLIMIT 100]\n(Background on this error at: https://sqlalche.me/e/20/f405)']
+2026-05-28 09:14:22 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 230 chars
+2026-05-28 09:14:22 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=sql
+2026-05-28 09:14:22 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 8.10s
+2026-05-28 09:31:05 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 09:31:33 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 09:31:33 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 09:31:33 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 09:31:33 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 09:31:33 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 09:31:33 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 09:31:36 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 09:31:36 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 09:31:36 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 09:31:36 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 09:31:38 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 09:31:38 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 09:31:38 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 09:33:23 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 09:33:23 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 09:33:23 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 09:33:23 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 09:33:23 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 09:33:23 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 09:33:23 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 09:34:05 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 09:34:05 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.01s
+2026-05-28 09:34:28 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Give me total number of assets'
+2026-05-28 09:34:30 | INFO     | app.graph.router:router_node:48 | Router -> [sql] | query: 'Give me total number of assets'
+2026-05-28 09:34:30 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total number of assets'
+2026-05-28 09:34:33 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 09:34:33 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 09:34:33 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 09:34:33 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 1 rows
+2026-05-28 09:34:34 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 83 chars | route: sql
+2026-05-28 09:34:34 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 83 chars
+2026-05-28 09:34:34 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=sql
+2026-05-28 09:34:34 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 6.74s
+2026-05-28 09:43:48 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 09:44:00 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 09:44:00 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 09:44:00 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 09:44:00 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 09:44:00 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 09:44:00 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 09:44:03 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 09:44:03 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 09:44:03 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 09:44:03 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 09:44:03 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 09:44:03 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 09:44:03 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 09:44:11 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 09:44:11 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 09:44:11 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 09:44:11 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 09:44:11 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 09:44:11 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 09:44:11 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 09:44:20 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 09:44:20 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.01s
+2026-05-28 09:44:32 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 09:44:33 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 09:45:02 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 09:45:07 | INFO     | app.graph.router:router_node:48 | Router -> [both] | query: 'Tell me about Rakshitah'
+2026-05-28 09:45:08 | ERROR    | app.graph.nodes.rag_node:rag_node:33 | RAG node error: 'NoneType' object has no attribute 'get'
+2026-05-28 09:45:08 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Tell me about Rakshitah'
+2026-05-28 09:45:08 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 0 rows
+2026-05-28 09:45:11 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT 'NOT_APPLICABLE' AS result LIMIT 100'
+2026-05-28 09:45:11 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 09:45:11 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT 'NOT_APPLICABLE' AS result LIMIT 100'
+2026-05-28 09:45:11 | ERROR    | app.services.chat_service:process_message:59 | ChatService failed: At key 'query': Can receive only one value per step. Use an Annotated key to handle multiple values.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 603, in run_forever
+    self._run_once()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "C:\Users\Chandana\Projects\GRC-Chatbot\langgraph-agent\app\api\routes\chat.py", line 15, in chat
+    result = await chat_service.process_message(
+> File "C:\Users\Chandana\Projects\GRC-Chatbot\langgraph-agent\app\services\chat_service.py", line 40, in process_message
+    result = await grc_graph.ainvoke(initial_state)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\__init__.py", line 1604, in ainvoke
+    async for chunk in self.astream(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\__init__.py", line 1487, in astream
+    while loop.tick(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\loop.py", line 318, in tick
+    mv_writes = apply_writes(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\algo.py", line 247, in apply_writes
+    if channels[chan].update(vals) and get_next_version is not None:
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\channels\last_value.py", line 38, in update
+    raise InvalidUpdateError(
+langgraph.errors.InvalidUpdateError: At key 'query': Can receive only one value per step. Use an Annotated key to handle multiple values.
+2026-05-28 09:45:11 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 9.26s
+2026-05-28 10:03:44 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 10:03:52 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 10:03:52 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 10:03:52 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 10:03:52 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 10:03:52 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 10:03:52 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 10:03:55 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 10:03:55 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 10:03:55 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 10:03:55 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 10:03:55 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 10:03:55 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 10:03:55 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 10:04:04 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 10:04:04 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 10:04:04 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 10:04:04 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 10:04:04 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 10:04:04 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 10:04:04 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 10:04:11 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 10:04:11 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 10:04:11 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 10:04:11 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 10:04:11 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 10:04:11 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 10:04:14 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 10:04:14 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 10:04:14 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 10:04:14 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 10:04:14 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 10:04:14 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 10:04:14 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 10:04:22 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 10:04:22 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 10:04:22 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 10:04:22 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 10:04:22 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 10:04:22 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 10:04:22 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 10:04:56 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 10:04:57 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 10:07:08 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 10:07:08 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 10:07:30 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 10:07:36 | INFO     | app.graph.router:router_node:48 | Router -> [rag] | query: 'Tell me about Rakshitah'
+2026-05-28 10:07:36 | ERROR    | app.graph.nodes.rag_node:rag_node:33 | RAG node error: 'NoneType' object has no attribute 'get'
+2026-05-28 10:07:36 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 0 rows
+2026-05-28 10:07:38 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 360 chars | route: rag
+2026-05-28 10:07:38 | WARNING  | app.graph.nodes.validator_node:validator_node:28 | Validator → response OK but 1 error(s): ["RAG error: 'NoneType' object has no attribute 'get'"]
+2026-05-28 10:07:38 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 360 chars
+2026-05-28 10:07:38 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=rag
+2026-05-28 10:07:38 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 8.28s
+2026-05-28 10:14:05 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 10:14:13 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 10:14:13 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 10:14:13 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 10:14:13 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 10:14:13 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 10:14:13 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 10:14:16 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 10:14:16 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 10:14:16 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 10:14:16 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 10:14:16 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 10:14:16 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 10:14:16 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 10:14:24 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 10:14:24 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 10:14:24 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 10:14:24 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 10:14:24 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 10:14:24 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 10:14:24 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 10:16:21 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 10:16:21 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.01s
+2026-05-28 10:16:54 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 10:16:57 | INFO     | app.graph.router:router_node:48 | Router -> [direct] | query: 'Tell me about Rakshitah'
+2026-05-28 10:16:59 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 460 chars | route: direct
+2026-05-28 10:16:59 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 460 chars
+2026-05-28 10:16:59 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=direct
+2026-05-28 10:16:59 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 5.32s
+2026-05-28 10:30:02 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Give me total number of assets'
+2026-05-28 10:30:04 | INFO     | app.graph.router:router_node:48 | Router -> [sql] | query: 'Give me total number of assets'
+2026-05-28 10:30:04 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total number of assets'
+2026-05-28 10:30:06 | WARNING  | app.sql.sql_agent:run:81 | SQL blocked by validator: Table/View 'assets' is not allowed. Only these views are accessible: ['vw_assessment_scoring', 'vw_assessment_summary', 'vw_asset_inventory', 'vw_control_test_status', 'vw_document_summary', 'vw_framework_compliance', 'vw_mitigation_summary', 'vw_open_risks', 'vw_overdue_items', 'vw_risk_history', 'vw_risk_summary', 'vw_risk_trend', 'vw_user_activity']
+2026-05-28 10:30:06 | ERROR    | app.graph.nodes.sql_node:sql_node:25 | SQL node error: SQL validation failed: Table/View 'assets' is not allowed. Only these views are accessible: ['vw_assessment_scoring', 'vw_assessment_summary', 'vw_asset_inventory', 'vw_control_test_status', 'vw_document_summary', 'vw_framework_compliance', 'vw_mitigation_summary', 'vw_open_risks', 'vw_overdue_items', 'vw_risk_history', 'vw_risk_summary', 'vw_risk_trend', 'vw_user_activity']
+2026-05-28 10:30:06 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 0 rows
+2026-05-28 10:30:09 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 249 chars | route: sql
+2026-05-28 10:30:09 | WARNING  | app.graph.nodes.validator_node:validator_node:28 | Validator → response OK but 1 error(s): ["SQL error: SQL validation failed: Table/View 'assets' is not allowed. Only these views are accessible: ['vw_assessment_scoring', 'vw_assessment_summary', 'vw_asset_inventory', 'vw_control_test_status', 'vw_document_summary', 'vw_framework_compliance', 'vw_mitigation_summary', 'vw_open_risks', 'vw_overdue_items', 'vw_risk_history', 'vw_risk_summary', 'vw_risk_trend', 'vw_user_activity']"]
+2026-05-28 10:30:09 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 249 chars
+2026-05-28 10:30:09 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=sql
+2026-05-28 10:30:09 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 7.21s
+2026-05-28 10:46:05 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 10:46:05 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 10:46:05 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 10:46:05 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 10:46:05 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 10:46:05 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 10:46:07 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 10:46:07 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 10:46:07 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 10:46:07 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 10:46:08 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 10:46:08 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 10:46:08 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 10:46:15 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 10:46:15 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 10:46:15 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 10:46:15 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 10:46:15 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 10:46:15 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 10:46:15 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 10:46:42 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 10:46:42 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.01s
+2026-05-28 10:47:25 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Give me total number of assets'
+2026-05-28 10:47:28 | INFO     | app.graph.router:router_node:48 | Router -> [sql] | query: 'Give me total number of assets'
+2026-05-28 10:47:28 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total number of assets'
+2026-05-28 10:47:32 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 10:47:32 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 10:47:32 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 10:47:32 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 1 rows
+2026-05-28 10:47:34 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 96 chars | route: sql
+2026-05-28 10:47:34 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 96 chars
+2026-05-28 10:47:34 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=sql
+2026-05-28 10:47:34 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 9.60s
+2026-05-28 10:48:56 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 10:49:01 | INFO     | app.graph.router:router_node:48 | Router -> [rag] | query: 'Tell me about Rakshitah'
+2026-05-28 10:49:01 | INFO     | app.graph.nodes.rag_node:rag_node:24 | RAG node → 3 chunks | 'Tell me about Rakshitah'
+2026-05-28 10:49:01 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 0 rows
+2026-05-28 10:49:05 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 1098 chars | route: rag
+2026-05-28 10:49:05 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 1098 chars
+2026-05-28 10:49:05 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=rag
+2026-05-28 10:49:05 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 9.22s
+2026-05-28 10:54:10 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Explain the Rakshitah platform and give me total number of assets'
+2026-05-28 10:54:12 | INFO     | app.graph.router:router_node:48 | Router -> [both] | query: 'Explain the Rakshitah platform and give me total number of a'
+2026-05-28 10:54:12 | INFO     | app.graph.nodes.rag_node:rag_node:24 | RAG node → 3 chunks | 'Explain the Rakshitah platform and give me total number of a'
+2026-05-28 10:54:12 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Explain the Rakshitah platform and give me total number of assets'
+2026-05-28 10:54:12 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 0 rows
+2026-05-28 10:54:17 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 10:54:17 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 10:54:17 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 10:54:17 | ERROR    | app.services.chat_service:process_message:59 | ChatService failed: At key 'sql_query': Can receive only one value per step. Use an Annotated key to handle multiple values.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 603, in run_forever
+    self._run_once()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "C:\Users\Chandana\Projects\GRC-Chatbot\langgraph-agent\app\api\routes\chat.py", line 15, in chat
+    result = await chat_service.process_message(
+> File "C:\Users\Chandana\Projects\GRC-Chatbot\langgraph-agent\app\services\chat_service.py", line 40, in process_message
+    result = await grc_graph.ainvoke(initial_state)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\__init__.py", line 1604, in ainvoke
+    async for chunk in self.astream(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\__init__.py", line 1487, in astream
+    while loop.tick(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\loop.py", line 318, in tick
+    mv_writes = apply_writes(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\algo.py", line 247, in apply_writes
+    if channels[chan].update(vals) and get_next_version is not None:
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\channels\last_value.py", line 38, in update
+    raise InvalidUpdateError(
+langgraph.errors.InvalidUpdateError: At key 'sql_query': Can receive only one value per step. Use an Annotated key to handle multiple values.
+2026-05-28 10:54:17 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 7.66s
+2026-05-28 11:08:41 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 11:08:50 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 11:08:50 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 11:08:50 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 11:08:50 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 11:08:50 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 11:08:50 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 11:10:27 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 11:10:27 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 11:10:27 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 11:10:27 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 11:10:29 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 11:10:29 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 11:10:29 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 11:11:13 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 11:11:13 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 11:11:13 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 11:11:13 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 11:11:13 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 11:11:13 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 11:11:13 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 11:11:38 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 11:11:39 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.01s
+2026-05-28 11:12:09 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Explain the Rakshitah platform and give me total number of assets'
+2026-05-28 11:12:12 | INFO     | app.graph.router:router_node:48 | Router -> [both] | query: 'Explain the Rakshitah platform and give me total number of a'
+2026-05-28 11:12:12 | INFO     | app.graph.nodes.rag_node:rag_node:24 | RAG node → 3 chunks | 'Explain the Rakshitah platform and give me total number of a'
+2026-05-28 11:12:12 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Explain the Rakshitah platform and give me total number of assets'
+2026-05-28 11:12:12 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 0 rows
+2026-05-28 11:12:19 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 11:12:19 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 11:12:19 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 11:12:19 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 1 rows
+2026-05-28 11:12:22 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 953 chars | route: both
+2026-05-28 11:12:23 | ERROR    | app.services.chat_service:process_message:59 | ChatService failed: At key 'full_context': Can receive only one value per step. Use an Annotated key to handle multiple values.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 603, in run_forever
+    self._run_once()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "C:\Users\Chandana\Projects\GRC-Chatbot\langgraph-agent\app\api\routes\chat.py", line 15, in chat
+    result = await chat_service.process_message(
+> File "C:\Users\Chandana\Projects\GRC-Chatbot\langgraph-agent\app\services\chat_service.py", line 40, in process_message
+    result = await grc_graph.ainvoke(initial_state)
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\__init__.py", line 1604, in ainvoke
+    async for chunk in self.astream(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\__init__.py", line 1487, in astream
+    while loop.tick(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\loop.py", line 318, in tick
+    mv_writes = apply_writes(
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\pregel\algo.py", line 247, in apply_writes
+    if channels[chan].update(vals) and get_next_version is not None:
+  File "C:\Users\Chandana\AppData\Local\Programs\Python\Python310\lib\site-packages\langgraph\channels\last_value.py", line 38, in update
+    raise InvalidUpdateError(
+langgraph.errors.InvalidUpdateError: At key 'full_context': Can receive only one value per step. Use an Annotated key to handle multiple values.
+2026-05-28 11:12:23 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 14.10s
+2026-05-28 11:23:18 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 11:23:35 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 11:23:35 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 11:23:35 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 11:23:35 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 11:23:35 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 11:23:35 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 11:23:38 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 11:23:38 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 11:23:38 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 11:23:38 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 11:23:38 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 11:23:38 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 11:23:38 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 11:23:45 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 11:23:45 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 11:23:45 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 11:23:45 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 11:23:45 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 11:23:45 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 11:23:45 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 11:25:16 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 11:25:23 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 11:25:23 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 11:25:23 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 11:25:23 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 11:25:23 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 11:25:23 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 11:25:26 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 11:25:26 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 11:25:26 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 11:25:26 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 11:25:26 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 11:25:26 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 11:25:26 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 11:25:34 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 11:25:34 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 11:25:34 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 11:25:34 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 11:25:34 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 11:25:34 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 11:25:34 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 11:25:53 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 11:25:53 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 11:26:15 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Explain the Rakshitah platform and give me total number of assets'
+2026-05-28 11:26:18 | INFO     | app.graph.router:router_node:48 | Router -> [both] | query: 'Explain the Rakshitah platform and give me total number of a'
+2026-05-28 11:26:18 | INFO     | app.graph.nodes.rag_node:rag_node:24 | RAG node → 3 chunks | 'Explain the Rakshitah platform and give me total number of a'
+2026-05-28 11:26:18 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Explain the Rakshitah platform and give me total number of assets'
+2026-05-28 11:26:23 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 11:26:23 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 11:26:23 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 11:26:23 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 1 rows
+2026-05-28 11:26:26 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 698 chars | route: both
+2026-05-28 11:26:26 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 698 chars
+2026-05-28 11:26:26 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=both
+2026-05-28 11:26:26 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 11.04s
+2026-05-28 11:34:34 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 11:34:35 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 11:34:45 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Give me total number of assets'
+2026-05-28 11:34:49 | INFO     | app.graph.router:router_node:48 | Router -> [sql] | query: 'Give me total number of assets'
+2026-05-28 11:34:49 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total number of assets'
+2026-05-28 11:34:52 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 11:34:52 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 11:34:52 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 11:34:52 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 1 rows
+2026-05-28 11:34:54 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 96 chars | route: sql
+2026-05-28 11:34:54 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 96 chars
+2026-05-28 11:34:54 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=sql
+2026-05-28 11:34:54 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 8.83s
+2026-05-28 11:35:59 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 11:35:59 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 11:36:08 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 11:36:13 | INFO     | app.graph.router:router_node:48 | Router -> [direct] | query: 'Tell me about Rakshitah'
+2026-05-28 11:36:15 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 338 chars | route: direct
+2026-05-28 11:36:15 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 338 chars
+2026-05-28 11:36:15 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=direct
+2026-05-28 11:36:15 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 6.89s
+2026-05-28 11:47:50 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 11:48:19 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 11:48:19 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 11:48:19 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 11:48:19 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 11:48:19 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 11:48:19 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 11:48:22 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 11:48:22 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 11:48:22 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 11:48:22 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 11:48:22 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 11:48:22 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 11:48:22 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 11:48:32 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 11:48:32 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 11:48:32 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 11:48:32 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 11:48:32 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 11:48:32 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 11:48:32 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 11:52:36 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 11:52:36 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.01s
+2026-05-28 11:52:55 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 11:52:57 | INFO     | app.graph.router:router_node:48 | Router -> [rag] | query: 'Tell me about Rakshitah'
+2026-05-28 11:52:57 | INFO     | app.graph.nodes.rag_node:rag_node:24 | RAG node → 3 chunks | 'Tell me about Rakshitah'
+2026-05-28 11:52:57 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 0 rows
+2026-05-28 11:53:03 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 1248 chars | route: rag
+2026-05-28 11:53:03 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 1248 chars
+2026-05-28 11:53:03 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=rag
+2026-05-28 11:53:03 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 7.94s
+2026-05-28 11:57:54 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 11:57:55 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 11:58:03 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Explain the Rakshitah platform and show the total number of assets in the system'
+2026-05-28 11:58:06 | INFO     | app.graph.router:router_node:48 | Router -> [both] | query: 'Explain the Rakshitah platform and show the total number of '
+2026-05-28 11:58:06 | INFO     | app.graph.nodes.rag_node:rag_node:24 | RAG node → 3 chunks | 'Explain the Rakshitah platform and show the total number of '
+2026-05-28 11:58:06 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Explain the Rakshitah platform and show the total number of assets in the system'
+2026-05-28 11:58:11 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 11:58:11 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 11:58:11 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 11:58:11 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 1 rows
+2026-05-28 11:58:15 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 880 chars | route: both
+2026-05-28 11:58:15 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 880 chars
+2026-05-28 11:58:15 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=both
+2026-05-28 11:58:15 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 12.58s
+2026-05-28 12:37:37 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 12:40:02 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 12:40:02 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 12:40:02 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 12:40:02 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 12:40:02 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 12:40:02 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 12:40:06 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 12:40:06 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 12:40:06 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 12:40:06 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 12:40:06 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 12:40:06 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 12:40:06 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 12:40:14 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 12:40:14 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 12:40:14 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 12:40:14 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 12:40:14 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 12:40:14 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 12:40:14 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 12:46:43 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 12:46:43 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 12:47:41 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Give me total number of assets'
+2026-05-28 12:47:43 | INFO     | app.graph.router:router_node:48 | Router -> [sql] | query: 'Give me total number of assets'
+2026-05-28 12:47:43 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total number of assets'
+2026-05-28 12:47:46 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 12:47:46 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 12:47:46 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 12:47:46 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 1 rows
+2026-05-28 12:47:47 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 43 chars | route: sql
+2026-05-28 12:47:47 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 43 chars
+2026-05-28 12:47:47 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=sql
+2026-05-28 12:47:47 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 6.16s
+2026-05-28 12:50:39 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 12:50:39 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 12:50:55 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 12:51:00 | INFO     | app.graph.router:router_node:48 | Router -> [rag] | query: 'Tell me about Rakshitah'
+2026-05-28 12:51:00 | INFO     | app.graph.nodes.rag_node:rag_node:24 | RAG node → 3 chunks | 'Tell me about Rakshitah'
+2026-05-28 12:51:00 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 0 rows
+2026-05-28 12:51:03 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 706 chars | route: rag
+2026-05-28 12:51:03 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 706 chars
+2026-05-28 12:51:03 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=rag
+2026-05-28 12:51:03 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 8.23s
+2026-05-28 12:57:46 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 12:58:17 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 12:58:17 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 12:58:17 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 12:58:17 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 12:58:17 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 12:58:17 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 12:58:19 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 12:58:19 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 12:58:19 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 12:58:19 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 12:58:21 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 12:58:21 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 12:58:21 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 12:59:25 | ERROR    | app.sql.schema_loader:load:73 |  Schema loading failed: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query ([WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-05-28 12:59:25 | ERROR    | app.main:lifespan:128 | [5/5] Schema loading failed: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query ([WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)')
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-05-28 12:59:25 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 12:59:25 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 12:59:25 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 12:59:25 | INFO     | app.main:lifespan:136 | Startup status: degraded
+2026-05-28 12:59:25 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 13:06:27 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 13:06:27 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 13:06:27 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 13:06:27 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 13:06:27 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 13:06:27 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 13:06:31 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 13:06:31 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 13:06:31 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 13:06:31 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 13:06:31 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 13:06:31 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 13:06:31 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 13:06:39 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 13:06:39 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 13:06:39 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 13:06:39 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 13:06:39 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 13:06:39 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 13:06:39 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 13:25:21 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 13:25:21 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 13:27:32 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Give me total number of assets'
+2026-05-28 13:27:36 | INFO     | app.graph.router:router_node:48 | Router -> [sql] | query: 'Give me total number of assets'
+2026-05-28 13:27:36 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total number of assets'
+2026-05-28 13:27:38 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 13:27:38 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 13:27:38 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 13:27:38 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 1 rows
+2026-05-28 13:27:40 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 63 chars | route: sql
+2026-05-28 13:27:40 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 63 chars
+2026-05-28 13:27:40 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=sql
+2026-05-28 13:27:40 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 7.69s
+2026-05-28 13:28:46 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 13:28:46 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 13:28:58 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 13:29:01 | INFO     | app.graph.router:router_node:48 | Router -> [rag] | query: 'Tell me about Rakshitah'
+2026-05-28 13:29:01 | INFO     | app.graph.nodes.rag_node:rag_node:24 | RAG node → 3 chunks | 'Tell me about Rakshitah'
+2026-05-28 13:29:01 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 0 rows
+2026-05-28 13:29:04 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 1064 chars | route: rag
+2026-05-28 13:29:04 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 1064 chars
+2026-05-28 13:29:04 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=rag
+2026-05-28 13:29:04 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 6.43s
+2026-05-28 13:51:06 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 13:51:14 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 13:51:14 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 13:51:14 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 13:51:14 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 13:51:14 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 13:51:14 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 13:52:49 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 13:52:49 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 13:52:49 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 13:52:49 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 13:52:49 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 13:52:49 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 13:52:53 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 13:52:53 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 13:52:53 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 13:52:53 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 13:52:54 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 13:52:54 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 13:52:54 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 13:53:16 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 13:53:16 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 13:53:16 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 13:53:16 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 13:53:16 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 13:53:16 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 13:53:16 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 13:53:52 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 13:53:52 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.01s
+2026-05-28 13:54:20 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 13:54:23 | INFO     | app.graph.router:router_node:48 | Router -> [rag] | query: 'Tell me about Rakshitah'
+2026-05-28 13:54:23 | INFO     | app.graph.nodes.rag_node:rag_node:39 | RAG node → 3 chunks | 'Tell me about Rakshitah'
+2026-05-28 13:54:23 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 0 rows
+2026-05-28 13:54:27 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 849 chars | route: rag
+2026-05-28 13:54:27 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 849 chars
+2026-05-28 13:54:27 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=rag
+2026-05-28 13:54:27 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 6.72s
+2026-05-28 13:59:05 | INFO     | app.main:lifespan:141 | GRC Chatbot shutting down...
+2026-05-28 13:59:23 | INFO     | app.main:lifespan:64 | ============================================================
+2026-05-28 13:59:23 | INFO     | app.main:lifespan:65 | GRC Chatbot - LangGraph Agent
+2026-05-28 13:59:23 | INFO     | app.main:lifespan:66 | ============================================================
+2026-05-28 13:59:23 | INFO     | app.main:lifespan:68 | [1/5] Initializing LangGraph...
+2026-05-28 13:59:23 | INFO     | app.main:lifespan:73 | [1/5] LangGraph is ready.
+2026-05-28 13:59:23 | INFO     | app.main:lifespan:78 | [2/5] Loading embeddings model...
+2026-05-28 13:59:26 | INFO     | app.main:lifespan:83 | [2/5] Embeddings loaded successfully.
+2026-05-28 13:59:26 | INFO     | app.main:lifespan:88 | [3/5] Connecting to Chroma...
+2026-05-28 13:59:26 | INFO     | app.main:lifespan:96 | [3/5] Chroma collection ready: grc_documents
+2026-05-28 13:59:26 | INFO     | app.main:lifespan:101 | [4/5] Connecting to MySQL...
+2026-05-28 13:59:26 | INFO     | app.sql.db:test_connection:63 | MySQL connected.
+2026-05-28 13:59:26 | INFO     | app.main:lifespan:110 | [4/5] MySQL connected successfully.
+2026-05-28 13:59:26 | INFO     | app.main:lifespan:117 | [5/5] Loading schema cache...
+2026-05-28 13:59:33 | INFO     | app.sql.schema_loader:load:70 |  Schema loaded — 77 tables: ['CVSS_scoring', 'assessment_answers', 'assessment_answers_to_asset_groups', 'assessment_answers_to_assets', 'assessment_questions', 'assessment_scoring', 'assessment_scoring_contributing_impacts', 'assessments', 'asset_groups', 'asset_values', 'assets', 'assets_asset_groups', 'audit_log', 'backups', 'category', 'close_reason', 'closures', 'comments', 'compliance_files', 'contributing_risks', 'contributing_risks_impact', 'contributing_risks_likelihood', 'control_class', 'control_maturity', 'control_phase', 'control_priority', 'control_type', 'custom_risk_model_values', 'data_classification', 'date_formats', 'document_exceptions', 'document_exceptions_status', 'document_status', 'documents', 'dynamic_saved_selections', 'failed_login_attempts', 'family', 'fields', 'file_type_extensions', 'file_types', 'files', 'framework_control_mappings', 'framework_control_test_audits', 'framework_control_test_comments', 'framework_control_test_results', 'framework_control_test_results_to_risks', 'framework_control_tests', 'framework_control_to_framework', 'framework_control_type_mappings', 'framework_controls', 'frameworks', 'graphical_saved_selections', 'impact', 'items_to_teams', 'languages', 'likelihood', 'location', 'mgmt_reviews', 'mitigation_accept_users', 'mitigation_effort', 'mitigation_to_controls', 'mitigation_to_team', 'mitigations', 'next_step', 'password_reset', 'pending_risks', 'permission_groups', 'permission_to_permission_group', 'permission_to_user', 'permissions', 'planning_strategy', 'projects', 'regulation', 'residual_risk_scoring_history', 'review', 'review_levels', 'risk_catalog']
+2026-05-28 13:59:33 | INFO     | app.main:lifespan:125 | [5/5] Schema cached successfully with 77 tables.
+2026-05-28 13:59:33 | INFO     | app.main:lifespan:133 | ------------------------------------------------------------
+2026-05-28 13:59:33 | INFO     | app.main:lifespan:134 | Server running on 0.0.0.0:8000
+2026-05-28 13:59:33 | INFO     | app.main:lifespan:135 | Docs: http://localhost:8000/docs
+2026-05-28 13:59:33 | INFO     | app.main:lifespan:136 | Startup status: healthy
+2026-05-28 13:59:33 | INFO     | app.main:lifespan:137 | ------------------------------------------------------------
+2026-05-28 13:59:50 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 13:59:50 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.01s
+2026-05-28 14:00:34 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah'
+2026-05-28 14:00:37 | INFO     | app.graph.router:router_node:48 | Router -> [rag] | query: 'Tell me about Rakshitah'
+2026-05-28 14:00:37 | INFO     | app.graph.nodes.rag_node:rag_node:44 | RAG node → 3 chunks | 'Tell me about Rakshitah'
+2026-05-28 14:00:37 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 0 rows
+2026-05-28 14:00:40 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 651 chars | route: rag
+2026-05-28 14:00:40 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 651 chars
+2026-05-28 14:00:40 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=rag
+2026-05-28 14:00:40 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 6.42s
+2026-05-28 14:02:17 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 14:02:17 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 14:02:56 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Give me total number of assets'
+2026-05-28 14:02:59 | INFO     | app.graph.router:router_node:48 | Router -> [sql] | query: 'Give me total number of assets'
+2026-05-28 14:02:59 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Give me total number of assets'
+2026-05-28 14:03:04 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 14:03:04 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 14:03:04 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 14:03:04 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 0 chunks | SQL: 1 rows
+2026-05-28 14:03:06 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 52 chars | route: sql
+2026-05-28 14:03:06 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 52 chars
+2026-05-28 14:03:06 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=sql
+2026-05-28 14:03:06 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 9.76s
+2026-05-28 14:04:06 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /docs 200 0.00s
+2026-05-28 14:04:06 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | GET /openapi.json 200 0.00s
+2026-05-28 14:04:18 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Explain the Rakshitah platform and give me total number of assets'
+2026-05-28 14:04:21 | INFO     | app.graph.router:router_node:48 | Router -> [both] | query: 'Explain the Rakshitah platform and give me total number of a'
+2026-05-28 14:04:21 | INFO     | app.graph.nodes.rag_node:rag_node:44 | RAG node → 3 chunks | 'Explain the Rakshitah platform and give me total number of a'
+2026-05-28 14:04:21 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Explain the Rakshitah platform and give me total number of assets'
+2026-05-28 14:04:25 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 14:04:25 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 14:04:25 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 14:04:25 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 1 rows
+2026-05-28 14:04:28 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 665 chars | route: both
+2026-05-28 14:04:28 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 665 chars
+2026-05-28 14:04:28 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=both
+2026-05-28 14:04:28 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 10.15s
+2026-05-28 14:10:30 | INFO     | app.services.chat_service:process_message:9 | ChatService → 'Tell me about Rakshitah and give me total number of assets'
+2026-05-28 14:10:33 | INFO     | app.graph.router:router_node:48 | Router -> [both] | query: 'Tell me about Rakshitah and give me total number of assets'
+2026-05-28 14:10:33 | INFO     | app.graph.nodes.rag_node:rag_node:44 | RAG node → 3 chunks | 'Tell me about Rakshitah and give me total number of assets'
+2026-05-28 14:10:33 | INFO     | app.sql.sql_agent:run:39 | SQLAgent → 'Tell me about Rakshitah and give me total number of assets'
+2026-05-28 14:10:38 | INFO     | app.sql.query_validator:validate_sql:158 | SQL validated | 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMIT 100'
+2026-05-28 14:10:38 | INFO     | app.sql.sql_agent:run:87 | SQLAgent → 1 rows returned
+2026-05-28 14:10:38 | INFO     | app.graph.nodes.sql_node:sql_node:12 | SQL node → 1 rows | sql: 'SELECT COUNT(*) AS total_assets
+FROM vw_asset_inventory
+LIMI'
+2026-05-28 14:10:38 | INFO     | app.graph.nodes.aggregator_node:aggregator_node:35 | Aggregator -> RAG: 3 chunks | SQL: 1 rows
+2026-05-28 14:10:41 | INFO     | app.graph.nodes.llm_node:llm_node:46 | LLM node → 817 chars | route: both
+2026-05-28 14:10:41 | INFO     | app.graph.nodes.validator_node:validator_node:30 | Validator -> response length: 817 chars
+2026-05-28 14:10:41 | INFO     | app.services.chat_service:process_message:42 | ChatService completed | route=both
+2026-05-28 14:10:41 | INFO     | app.api.middleware.logging_middleware:logging_middleware:16 | POST /api/v1/chat 200 11.06s

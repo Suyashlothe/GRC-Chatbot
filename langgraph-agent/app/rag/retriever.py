@@ -18,7 +18,8 @@ def retrieve(query: str, n_results: int = 3):
     final_results = []
 
     for doc, meta in zip(documents, metadatas):
-        final_results.append({
+         meta = meta or {}
+         final_results.append({
             "text": doc,
             "source": meta.get("source", "unknown"),
             "page": meta.get("page", "N/A"),
