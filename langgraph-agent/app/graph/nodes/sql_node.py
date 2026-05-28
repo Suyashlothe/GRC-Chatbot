@@ -15,7 +15,7 @@ async def sql_node(state: AgentState) -> AgentState:
         )
 
         return {
-            **state,
+            
             "sql_query": result["sql"],
             "sql_results": result["rows"],
             "sql_retrieved": True,
@@ -24,7 +24,7 @@ async def sql_node(state: AgentState) -> AgentState:
     except Exception as e:
         logger.error(f"SQL node error: {e}")
         return {
-            **state,
+        
             "sql_query": None,
             "sql_results": [],
             "sql_retrieved": False,

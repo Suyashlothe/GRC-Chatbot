@@ -46,15 +46,15 @@ def build_graph() -> StateGraph:
     # -------------------------
     # RAG flow
     # -------------------------
-    g.add_edge("rag_node", "aggregator_node")
+    
 
     # If BOTH → go from RAG → SQL → aggregator
     g.add_conditional_edges(
         "rag_node",
-        lambda state: "sql_node" if state.get("route") == "both" else "done",
+        lambda state: "sql_node" if state.get("route") == "both" else "aggregator_node",
         {
             "sql_node": "sql_node",
-            "done": "aggregator_node",
+            "aggregator_node": "aggregator_node",
         },
     )
 
